@@ -17,11 +17,10 @@ namespace UserMicroserviceAPI.Infrastructure.DataAccess.Repositories
 
         public async Task<User> Login(string username, string password)
         {
-
-
             return await _context.Users
-               .FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+               .FirstOrDefaultAsync(u => u.Username == username);
         }
+       
     }
 
 }

@@ -1,10 +1,11 @@
 using UserMicroserviceAPI.Infrastructure.DataAccess.DataContext;
 using Microsoft.EntityFrameworkCore;
-using UserMicroserviceAPI.Core.Interfaces;
 using UserMicroserviceAPI.Infrastructure.DataAccess.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using UserMicroserviceAPI.Infrastructure.Authentication.Authentication;
+using UserMicroserviceAPI.Core.Interfaces;
 using UserMicroserviceAPI.Core.Interfaces.Aunthentication;
+using UserMicroserviceAPI.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<AccountDbContext>(x => x.UseSqlServer(connectionSt
 // Registro de repositorios
 builder.Services.AddScoped<ILoginRepository, LoginRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

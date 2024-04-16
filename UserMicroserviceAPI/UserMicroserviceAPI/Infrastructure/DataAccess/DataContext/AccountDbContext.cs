@@ -18,7 +18,6 @@ namespace UserMicroserviceAPI.Infrastructure.DataAccess.DataContext
 
             modelBuilder.Entity<User>().HasKey(u => u.UserId);
             modelBuilder.Entity<User>().Property(u => u.Username).IsRequired();
-            modelBuilder.Entity<User>().Property(u => u.Password).IsRequired();
         }
     }
 }

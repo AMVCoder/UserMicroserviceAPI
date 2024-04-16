@@ -38,5 +38,10 @@ namespace UserMicroserviceAPI.Infrastructure.Authentication.Authentication
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+        public bool ValidateToken(string token)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
