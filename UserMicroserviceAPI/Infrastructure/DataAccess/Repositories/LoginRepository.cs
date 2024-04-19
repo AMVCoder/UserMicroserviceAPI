@@ -17,8 +17,15 @@ namespace UserMicroserviceAPI.Infrastructure.DataAccess.Repositories
 
         public async Task<Users> Login(string email)
         {
-            return await _context.Users
-               .FirstOrDefaultAsync(u => u.Username == email);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+            {
+                throw new Exception("User not found.");
+            }
         }
        
     }

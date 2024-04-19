@@ -43,10 +43,10 @@ namespace UserMicroserviceAPI.Core.Services.Account
 
                 Users userNew = new Users
                 {
-                    UserId = 2,
+                    UserId = new Random().Next(0, 10000),
                     Username = userInfo.Name,
                     Email = userInfo.Email,
-
+                    Rol = "user"
                 };
 
                 byte[] passwordHash, passwordSalt;
