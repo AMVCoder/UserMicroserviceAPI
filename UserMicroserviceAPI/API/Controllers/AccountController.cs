@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using UserMicroserviceAPI.API.DTOs;
 using UserMicroserviceAPI.Core.Entities.Users;
 using UserMicroserviceAPI.Core.Interfaces.Account;
@@ -28,13 +29,11 @@ namespace UserMicroserviceAPI.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _accountService.LoginAsync(userDto);
-            //if (user != null)
-            //{
-            //    // Aquí deberías generar un token JWT o similar para el usuario
-            //    string token = await _authService.GenerateToken(user);
-            //    return Ok(new { token });
-            //} 
+            string token = await _accountService.LoginAsync(userDto);
+            if (!token.IsNullOrEmpty())
+            {
+                return Ok(new { token });
+            }
 
             return Unauthorized("Invalid username or password");
         }

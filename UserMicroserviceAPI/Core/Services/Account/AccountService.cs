@@ -24,10 +24,17 @@ namespace UserMicroserviceAPI.Core.Services.Account
             _passHasher = passwordHasher;
         }
 
-        public async Task<bool> LoginAsync(UserLoginDto loginInfo)
+        public async Task<string> LoginAsync(UserLoginDto loginInfo)
         {
-            await _authService.Authenticate(loginInfo.Email, loginInfo.Password);
-            return true;
+            Users userConfirm = await _authService.Authenticate(loginInfo.Email, loginInfo.Password);
+
+            if (userConfirm != null)
+            {
+                string Token = await _authService.GenerateToken(userConfirm);
+                return Token;
+            }
+
+            return null;
         }
 
         public async Task<bool> RegisterUserAsync(UserRegistrationDto userInfo)

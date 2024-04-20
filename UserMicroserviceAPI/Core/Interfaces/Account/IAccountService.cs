@@ -5,7 +5,7 @@ namespace UserMicroserviceAPI.Core.Interfaces.Account
 {
     public interface IAccountService
     {
-        Task<bool> LoginAsync(UserLoginDto loginInfo);
+        Task<string> LoginAsync(UserLoginDto loginInfo);
         Task<bool> RegisterUserAsync(UserRegistrationDto userInfo);
     }
 }
